@@ -1,5 +1,5 @@
-SOURCE = main.c tools.c queue.c stack.c binarySearchTree.c
+SOURCES=$(wildcard *.c)
 CC = gcc
 
 all:
-	$(CC) $(SOURCE) -o test
+	$(CC) $(SOURCES) -o test

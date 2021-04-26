@@ -33,7 +33,7 @@ void BST_insert(BST *root, int key)
 		return;
 	}
 
-	Node *parent;
+	Node *parent = NULL;
 
 	while(root != NULL){
 		parent = root;
