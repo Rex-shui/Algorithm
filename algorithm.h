@@ -16,12 +16,7 @@
 
 //Circular Queue
 //*********************************************
-typedef struct Queue{
-    int *data;
-    int front;
-    int rear;
-}Queue;
-
+typedef struct queue Queue;
 //设置获取的队列的长度，默认128
 void Q_setLength(int length);
 Queue *Q_get(void);
@@ -29,9 +24,39 @@ void Q_free(Queue *Q);
 
 int Q_isEmpty(Queue *Q);
 int Q_isFull(Queue *Q);
-int DEQUEUE(Queue *Q);
-int ENQUEUE(Queue *Q, int data);
-void Q_print(Queue *Q);
+void *DEQUEUE(Queue *Q);
+void *ENQUEUE(Queue *Q, void *data);
+//*********************************************
+
+
+//stack
+//*********************************************
+typedef struct stack Stack;
+
+void S_setLength(int length);
+Stack *S_get(void);
+void S_free(Stack *s);
+
+int S_isEmpty(Stack *s);
+int S_isFull(Stack *s);
+
+void *pop(Stack *s);
+void *push(Stack *s, void *data);
+//*********************************************
+
+
+//Binary Search Tree
+//*********************************************
+typedef struct BinarySearchTree{
+	int key;
+	struct BinarySearchTree *l,*r;
+}Node, BST;
+
+BST *BST_create(int key);
+int BST_isEmpty(BST *root);
+void BST_insert(BST *root, int key);
+void BST_delete(BST *root, int key);
+void BST_print(BST *root);
 //*********************************************
 
 #endif /* algorithm_h */

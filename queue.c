@@ -9,6 +9,12 @@
 
 static int QUEUE = 128;
 
+typedef struct queue{
+    void **data;
+    int front;
+    int rear;
+}Queue;
+
 /*
  循环队列
  front指向队列头，rear指向队列尾的下一个元素（损失一个空间，见判断队列空）
@@ -25,8 +31,8 @@ Queue *Q_get(void)
     Queue *Q = (Queue *)malloc(sizeof(Queue));
     memset(Q, 0, sizeof(Queue));
     
-    Q->data = (int *)malloc(sizeof(int) * QUEUE);
-    memset(Q->data, RETURNERR, sizeof(int) * QUEUE);
+    Q->data = malloc(sizeof(int) * QUEUE);
+    memset(Q->data, 0, sizeof(int) * QUEUE);
     
     return Q;
 }
@@ -48,35 +54,23 @@ int Q_isFull(Queue *Q)
     return 0;
 }
 
-int DEQUEUE(Queue *Q)
+void *DEQUEUE(Queue *Q)
 {
-    if(Q_isEmpty(Q)) return RETURNERR;
+    if(Q_isEmpty(Q)) return NULL;
     
-    int ret = Q->data[Q->front];
-    Q->data[Q->front] = RETURNERR;
+    void *ret = Q->data[Q->front];
+    Q->data[Q->front] = NULL;
     Q->front = (Q->front + 1) % QUEUE;
     
     return ret;
 }
 
-int ENQUEUE(Queue *Q, int data)
+void *ENQUEUE(Queue *Q, void *data)
 {
-    if(Q_isFull(Q)) return RETURNERR;
+    if(Q_isFull(Q)) return NULL;
     
     Q->data[Q->rear] = data;
     Q->rear = (Q->rear + 1) % QUEUE;
     
-    return 0;
-}
-
-void Q_print(Queue *Q)
-{
-    printf("Queue(Length: %d) :", (Q->front + Q->rear + QUEUE) % QUEUE);
-    
-    int s = Q->front;
-    int e = Q->rear;
-    for(int i=s; i!=e; i=(i+1)%QUEUE){
-        printf("%d ", Q->data[i]);
-    }
-    printf("\n");
+    return data;
 }
