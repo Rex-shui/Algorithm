@@ -1,5 +1,5 @@
 SOURCES=$(wildcard *.c)
-CC = gcc
+CC = gcc -g
 
 all:
 	$(CC) $(SOURCES) -o test

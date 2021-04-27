@@ -54,6 +54,7 @@ typedef struct BinarySearchTree{
 
 BST *BST_create(int key);
 int BST_isEmpty(BST *root);
+Node *BST_search(BST *root, int key);
 void BST_insert(BST *root, int key);
 void BST_delete(BST *root, int key);
 void BST_print(BST *root);
