@@ -1,13 +1,18 @@
 #include "algorithm.h"
 
+typedef struct BinarySearchTree{
+        int key;
+        struct BinarySearchTree *left,*right;
+}Node, BST;
+
 static BST *parent = NULL;
 
 Node *newNode(int key)
 {
 	Node *n = malloc(sizeof(Node));
 	n->key = key;
-	n->l = NULL;
-	n->r = NULL;
+	n->left = NULL;
+	n->right = NULL;
 
 	return n;
 }
@@ -42,17 +47,17 @@ void BST_insert(BST *root, int key)
 	while(root != NULL){
 		pnt = root;
 		if(key > root->key)
-			root = root->r;
+			root = root->right;
 		else
-			root = root->l;
+			root = root->left;
 	}
 
 	Node *n = newNode(key);
 
 	if(key > pnt->key)
-		pnt->r= n;
+		pnt->right= n;
 	else
-		pnt->l= n;
+		pnt->left= n;
 }
 
 void BST_delete(BST *root, int key)
@@ -68,45 +73,45 @@ void BST_delete(BST *root, int key)
 
 	Node **branch;
 	if(key > parent->key)
-		branch = &parent->r;
+		branch = &parent->right;
 	else
-		branch = &parent->l;
+		branch = &parent->left;
 
-	if(target->l == NULL || target->r == NULL){
-		*branch = (Node *)((long int)target->l + (long int)target->r);
+	if(target->left == NULL || target->right == NULL){
+		*branch = (Node *)((long int)target->left + (long int)target->right);
 		return;
 	}
 
 	//左子树的值都小于右子树，为什么不直接用右子树的根节点代替原节点，左子树加入右子树的最下一层
 	/*
-	 *barnch = target->r;
-	 *Node *ptr = target->l;
-	 *while(ptr->l != NULL){
-	 *	ptr = ptr->l;
+	 *barnch = target->right;
+	 *Node *ptr = target->left;
+	 *while(ptr->left != NULL){
+	 *	ptr = ptr->left;
 	 *}
-	 *ptr->l = target->l;
+	 *ptr->left = target->left;
 	 *free(target);
 	 * */
 
 	//平衡性？
-	if(target->r->l == NULL){
-		*branch = target->r;
-		target->r->l = target->l;
+	if(target->right->left == NULL){
+		*branch = target->right;
+		target->right->left = target->left;
 		free(target);
 		return;
 	}
 
-	Node *ptr = target->r->l;
-	parent = target->r;
-	while(ptr->l != NULL){
+	Node *ptr = target->right->left;
+	parent = target->right;
+	while(ptr->left != NULL){
 		parent = ptr;
-		ptr=ptr->l;
+		ptr=ptr->left;
 	}
 
 	
-	parent->l = ptr->r;
-	ptr->r = target->r;
-	ptr->l = target->l;
+	parent->left = ptr->right;
+	ptr->right = target->right;
+	ptr->left = target->left;
 
 	*branch = ptr;
 	
@@ -123,18 +128,18 @@ void BST_print(BST *root)
 	Node *ptr = root;
 
 	push(stk, (void *)ptr);
-	ptr = ptr->l;
+	ptr = ptr->left;
 
 	while(!S_isEmpty(stk) || ptr != NULL){
 		while(ptr != NULL){
 			push(stk, (void *)ptr);
-			ptr = ptr->l;
+			ptr = ptr->left;
 		}
 
 		ptr = (Node *)pop(stk);
 		printf("%d ", ptr->key);
 
-		ptr = ptr->r;
+		ptr = ptr->right;
 	}
 
 	printf("\n");
@@ -149,9 +154,9 @@ Node *BST_search(BST *root, int key)
 
 		parent = root;
 		if(key > root->key)
-			root = root->r;
+			root = root->right;
 		else
-			root = root->l;
+			root = root->left;
 	}
 
 	return root;

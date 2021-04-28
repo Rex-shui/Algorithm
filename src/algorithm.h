@@ -47,10 +47,7 @@ void *push(Stack *s, void *data);
 
 //Binary Search Tree
 //*********************************************
-typedef struct BinarySearchTree{
-	int key;
-	struct BinarySearchTree *l,*r;
-}Node, BST;
+typedef struct BinarySearchTree Node, BST;
 
 BST *BST_create(int key);
 int BST_isEmpty(BST *root);
