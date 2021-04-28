@@ -1,4 +1,4 @@
-#### 栈：先进后出
+#### [栈：先进后出](./src/stack.c)
 
 ---
 
@@ -11,7 +11,7 @@ typedef struct stack{
 
 
 
-#### 队列：先进先出
+#### [队列：先进先出](./src/queue.c)
 
 * 数据结构
 
@@ -40,7 +40,7 @@ typedef struct Queue{
 
 1. 二叉树
    * 线索二叉树
-   * 二叉搜索树
+   * [二叉搜索树](./src/binarySearchTree.c)
    * 平衡二叉树-->[红黑树（大致平衡）](./src/red-black-tree.c)
    * 最优二叉树
 2. 森林
