@@ -33,5 +33,6 @@ int main(int argc, const char * argv[]) {
 	BST_print(root);
 	
 
+	BFS_print();
 	return 0;
 }

@@ -57,4 +57,8 @@ void BST_delete(BST *root, int key);
 void BST_print(BST *root);
 //*********************************************
 
+
+//Breadth First Search
+void BFS_print();
+
 #endif /* algorithm_h */

@@ -9,10 +9,12 @@
 #define tools_h
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <time.h>
 #include <string.h>
 
 char *getSysTime(void);
+int getRand(int range);
 
 #endif /* tools_h */

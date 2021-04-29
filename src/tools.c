@@ -25,3 +25,11 @@ char *getSysTime()
     
     return ret;
 }
+
+int getRand(int range)
+{
+
+	int r = rand()%range;
+
+	return r;
+}
