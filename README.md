@@ -89,3 +89,12 @@ typedef struct Queue{
 
   * [广度优先搜索](./src/breadthFirstSearch.c)
   * 深度优先搜索
+
+
+#### 动态规划
+
+---
+
+* [钢铁切割](./src/steelBarCutting.c)
+
+
