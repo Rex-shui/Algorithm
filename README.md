@@ -98,4 +98,5 @@ typedef struct Queue{
 * [钢铁切割](./src/steelBarCutting.c)
 * [最小路径和](./src/minPathSum.cpp)
 * [最小编辑距离](./src/minEditDistance.cpp)
+* [买股票的最佳时机](./src/maxProfit2.cpp)
 
