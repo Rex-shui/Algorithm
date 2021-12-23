@@ -100,3 +100,10 @@ typedef struct Queue{
 * [最小编辑距离](./src/minEditDistance.cpp)
 * [买股票的最佳时机](./src/maxProfit2.cpp)
 
+
+#### some
+
+---
+
+* [八皇后问题--递归](./src/eightQueen.cpp)
+*
