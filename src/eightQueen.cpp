@@ -28,6 +28,7 @@ void position(int row)
 	{
 		all.push_back(lineNum);
 		count++;
+		return;
 	}
 	
 	for(int i=0; i<8; i++)
