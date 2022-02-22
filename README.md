@@ -98,6 +98,7 @@ typedef struct Queue{
 * 插入：末尾插入，然后上浮
 * 删除：末尾元素替代删除元素，然后下沉
 * [堆排序](./src/heap-sort.c)
+* [相对名次](./src/releative-rank.c)
 
 
 #### 动态规划
