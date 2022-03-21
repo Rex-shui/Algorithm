@@ -117,3 +117,10 @@ typedef struct Queue{
 
 * [八皇后问题--递归](./src/eightQueen.cpp)
 *
+
+
+#### 排序
+
+---
+
+* [快速排序](./src/quick-sort.c)
