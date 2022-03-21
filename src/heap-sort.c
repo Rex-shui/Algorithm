@@ -2,57 +2,53 @@
 #include <stdlib.h>
 #include <time.h>
 
-struct HEAP {
-	int *data;
-	int len;
-	int size;
-};
-
+int sort[10] = {29, 0, 6, 28, 18, 7, 14, 25, 19, 3};
 
 //假定子树都是最大堆，迭代
-void MAX_HEAPIFY(struct HEAP *A, int i)
+void MAX_HEAPIFY(int to_sort[], int size, int pos)
 {
-	int l = 2*i + 1;	//左孩子节点
-	int r = 2*i + 2;	//右
+	int l = 2*pos + 1;	//左孩子节点
+	int r = 2*pos + 2;	//右
 	
 	int largest;
 	int swap;
 	//与子结点中最大的一个交换
-	if( l < A->size && A->data[l] > A->data[i] )
+	if( l < size && to_sort[l] > to_sort[pos] )
 		largest = l;
-	else largest = i;
-	if( r < A->size && A->data[r] > A->data[largest] )
+	else largest = pos;
+	if( r < size && to_sort[r] > to_sort[largest] )
 		largest = r;
 
 	
-	if( largest != i )
+	if( largest != pos )
 	{
-		swap = A->data[i];
-		A->data[i] = A->data[largest];
-		A->data[largest] = swap;
+		swap = to_sort[pos];
+		to_sort[pos] = to_sort[largest];
+		to_sort[largest] = swap;
 	
-		MAX_HEAPIFY(A, largest);
+		MAX_HEAPIFY(to_sort, size, largest);
 	}
 }
 
 
-void BUILD_MAX_HEAP(struct HEAP *A)
+void BUILD_MAX_HEAP(int to_sort[], int size)
 {
-	for(int i = A->len/2; i>=0; i--)
-		MAX_HEAPIFY(A, i);
+	for(int i = size/2; i>=0; i--)
+		MAX_HEAPIFY(to_sort, size, i);
 }
 
 //交换根节点与末位值，堆长度减一、迭代
-void HEAP_SORT(struct HEAP *A)
+void HEAP_SORT(int to_sort[], int size)
 {
 	int swap;
-	for(int i=A->len-1; i>0; i--)
+	for(int i=size-1; i>0; i--)
 	{
-		swap = A->data[i];
-		A->data[i] = A->data[0];
-		A->data[0] = swap;
-		A->size -= 1;
-		MAX_HEAPIFY(A, 0);
+		swap = to_sort[i];
+		to_sort[i] = to_sort[0];
+		to_sort[0] = swap;
+		
+		size--;
+		MAX_HEAPIFY(to_sort, size, 0);
 	} 
 }
 
@@ -68,25 +64,14 @@ void print(int *arr, int n)
 
 int main()
 {
-	int arr[10] = {0};
-	struct HEAP A;
-
-	srand(time(NULL));
-	for(int i=0; i<10; i++)
-	{
-		arr[i] = rand()%30;
-	}
-	print(arr, 10);
+	print(sort, 10);
 	
-	A.data = arr;
-	A.len = 10;
-	A.size = 10;
 
-	BUILD_MAX_HEAP(&A);
-	print(arr, 10);
+	BUILD_MAX_HEAP(sort, 10);
+	print(sort, 10);
 
-	HEAP_SORT(&A);
-	print(arr, 10);
+	HEAP_SORT(sort, 10);
+	print(sort, 10);
 	
 	return 0;
 }
